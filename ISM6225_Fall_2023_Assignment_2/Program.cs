@@ -379,33 +379,33 @@ namespace ISM6225_Fall_2023_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
+                Dictionary<int, int> countMap = new Dictionary<int, int>();
+                int goodPairs = 0;
 
-                Dictionary<int, int> numbers = new Dictionary<int, int>(); //initialize a dictionary to track numbers as they are read
-                int totalpairs = 0; //count number of pairs
-
-                for (int i = 0; i < nums.Length; i++)
+                foreach (int num in nums)
                 {
-                    if (numbers.ContainsKey(nums[i])) // if the input integer from nums[] is ALREADY in the dictionary...
+                    if (countMap.ContainsKey(num))
                     {
-                        totalpairs++;    // increase the pair count by 1
-                        numbers[nums[i]]++; // add 1 to the dictionary value for key nums[i]
+                        // If the number has already been seen, increment the count of good pairs by the count of that number.
+                        goodPairs += countMap[num];
+                        // Increment the count for this number in the dictionary.
+                        countMap[num]++;
                     }
                     else
                     {
-                        numbers[nums[i]] = 1; // if nums[i] not in dict, add and give it a value of 1 
+                        // If it's the first occurrence of the number, add it to the dictionary with a count of 1.
+                        countMap[num] = 1;
                     }
                 }
 
-                return totalpairs;
-
-                //return 0;
+                return goodPairs;
             }
             catch (Exception)
             {
                 throw;
             }
         }
+
 
         /*
         Question 6
@@ -448,44 +448,41 @@ namespace ISM6225_Fall_2023_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                int firstmax = int.MinValue; //initialize vars
-                int secmax = int.MinValue;
-                int thirdmax = int.MinValue;
+                long firstMax = long.MinValue; // Initialize to the lowest possible value
+                long secondMax = long.MinValue;
+                long thirdMax = long.MinValue;
 
-                for (int i = 0; i < nums.Length; i++)
+                foreach (int num in nums)
                 {
-                    if (nums[i] > firstmax) //determining the largest value
+                    if (num == firstMax || num == secondMax || num == thirdMax)
+                        continue; // Skip duplicates
+
+                    if (num > firstMax)
                     {
-                        thirdmax = secmax; //this section moves the values "down" since a new largest number was detected
-                        secmax = firstmax;
-                        firstmax = nums[i];
+                        thirdMax = secondMax;
+                        secondMax = firstMax;
+                        firstMax = num;
                     }
-                    else if (nums[i] > secmax && nums[i] < firstmax) // determining second largest value and adjust other value
+                    else if (num > secondMax)
                     {
-                        thirdmax = secmax;
-                        secmax = nums[i];
+                        thirdMax = secondMax;
+                        secondMax = num;
                     }
-                    else if (nums[i] > thirdmax && nums[i] < secmax) // determine the third largest value
+                    else if (num > thirdMax)
                     {
-                        thirdmax = nums[i];
+                        thirdMax = num;
                     }
                 }
-                if (thirdmax > firstmax)
-                {
-                    return thirdmax;
-                }
-                else
-                {
-                    return firstmax;
-                }
-                //return 0;
+
+                // If there is no third distinct maximum, return the maximum number.
+                return thirdMax == long.MinValue ? (int)firstMax : (int)thirdMax;
             }
             catch (Exception)
             {
                 throw;
             }
         }
+
 
         /*
         

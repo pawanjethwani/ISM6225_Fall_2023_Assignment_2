@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pawan\\source\\repos\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2.csproj": {}
+    "C:\\Users\\Pawan\\Source\\Repos\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pawan\\source\\repos\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2.csproj": {
+    "C:\\Users\\Pawan\\Source\\Repos\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pawan\\source\\repos\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2.csproj",
+        "projectUniqueName": "C:\\Users\\Pawan\\Source\\Repos\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2.csproj",
         "projectName": "ISM6225_Fall_2023_Assignment_2",
-        "projectPath": "C:\\Users\\Pawan\\source\\repos\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2.csproj",
+        "projectPath": "C:\\Users\\Pawan\\Source\\Repos\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2.csproj",
         "packagesPath": "C:\\Users\\Pawan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pawan\\source\\repos\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2\\obj\\",
+        "outputPath": "C:\\Users\\Pawan\\Source\\Repos\\ISM6225_Fall_2023_Assignment_2\\ISM6225_Fall_2023_Assignment_2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Pawan\\AppData\\Roaming\\NuGet\\NuGet.Config",
