@@ -317,7 +317,28 @@ namespace ISM6225_Fall_2023_Assignment_2
             try
             {
                 // Write your code here and you can modify the return value according to the requirements
-                return false;
+
+                int leftpointer = 0; //starts at first int
+                int rightpointer = s.Length - 1;  //starts at last int
+                HashSet<string> strobopairs = new HashSet<string>
+                {
+                    "00", "11", "88", "69", "96"  // the only strobogrammatic numbers to check for
+                };
+                while (leftpointer <= rightpointer) // will move the pointers toward the middle of the int and stop at the middle
+                {
+                    char leftchar = s[leftpointer];  //  getting the chars to compare
+                    char rightchar = s[rightpointer];
+
+                    if (!strobopairs.Contains($"{leftchar}{rightchar}")) //checking if the number pair is in the apprvoed list strobopairs
+                    {
+                        return false; //if the pair is not indexer the hashset, answer is false
+                    }
+                    leftpointer++; //moe pointers to next position to check.
+                    rightpointer--;
+                }
+                return true;
+
+                //return false;
             }
             catch (Exception)
             {
@@ -359,7 +380,26 @@ namespace ISM6225_Fall_2023_Assignment_2
             try
             {
                 // Write your code here and you can modify the return value according to the requirements
-                return 0;
+
+                Dictionary<int, int> numbers = new Dictionary<int, int>(); //initialize a dictionary to track numbers as they are read
+                int totalpairs = 0; //count number of pairs
+
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    if (numbers.ContainsKey(nums[i])) // if the input integer from nums[] is ALREADY in the dictionary...
+                    {
+                        totalpairs++;    // increase the pair count by 1
+                        numbers[nums[i]]++; // add 1 to the dictionary value for key nums[i]
+                    }
+                    else
+                    {
+                        numbers[nums[i]] = 1; // if nums[i] not in dict, add and give it a value of 1 
+                    }
+                }
+
+                return totalpairs;
+
+                //return 0;
             }
             catch (Exception)
             {
@@ -409,7 +449,37 @@ namespace ISM6225_Fall_2023_Assignment_2
             try
             {
                 // Write your code here and you can modify the return value according to the requirements
-                return 0;
+                int firstmax = int.MinValue; //initialize vars
+                int secmax = int.MinValue;
+                int thirdmax = int.MinValue;
+
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    if (nums[i] > firstmax) //determining the largest value
+                    {
+                        thirdmax = secmax; //this section moves the values "down" since a new largest number was detected
+                        secmax = firstmax;
+                        firstmax = nums[i];
+                    }
+                    else if (nums[i] > secmax && nums[i] < firstmax) // determining second largest value and adjust other value
+                    {
+                        thirdmax = secmax;
+                        secmax = nums[i];
+                    }
+                    else if (nums[i] > thirdmax && nums[i] < secmax) // determine the third largest value
+                    {
+                        thirdmax = nums[i];
+                    }
+                }
+                if (thirdmax > firstmax)
+                {
+                    return thirdmax;
+                }
+                else
+                {
+                    return firstmax;
+                }
+                //return 0;
             }
             catch (Exception)
             {
@@ -442,7 +512,21 @@ namespace ISM6225_Fall_2023_Assignment_2
             try
             {
                 // Write your code here and you can modify the return value according to the requirements
-                return new List<string>() { };
+                List<string> output = new List<string>();
+
+                for (int i = 0; i < currentState.Length - 1; i++) // need the '- 1' because we are checking 'i + 1' in the loop and it will keep us in bounds
+                {
+                    if (currentState[i] == '+' && currentState[i + 1] == '+') //look at i and the next character for a +
+                    {
+                        char[] nextState = currentState.ToCharArray(); // making this an array to make it easier to manipulate
+                        nextState[i] = '-'; //'flipping' the bits to --
+                        nextState[i + 1] = '-';
+                        output.Add(new string(nextState)); //turn results back to string and add to the 'output'
+                    }
+                }
+                return output;
+
+                //return new List<string>() { };
             }
             catch (Exception)
             {
@@ -471,7 +555,20 @@ namespace ISM6225_Fall_2023_Assignment_2
         public static string RemoveVowels(string s)
         {
             // Write your code here and you can modify the return value according to the requirements
-            return "";
+            List<char> newstring = new List<char>();
+
+            List<char> vowels = new List<char> { 'a', 'e', 'i', 'o', 'u' };
+
+            for (int i = 0; i < s.Length; i++) //this loop = if the char being checked in s is NOT a vowel, add it to newstring. 
+            {
+                if (!vowels.Contains(s[i]))
+                {
+                    newstring.Add(s[i]);
+                }
+            }
+            return new string(newstring.ToArray());
+
+            //return "";
         }
 
         /* Inbuilt Functions - Don't Change the below functions */
