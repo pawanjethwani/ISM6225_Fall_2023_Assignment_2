@@ -17,8 +17,6 @@ namespace ISM6225_Fall_2023_Assignment_2
             //Question 1:
             Console.WriteLine("Question 1:");
             int[] nums1 = { 0, 1, 3, 50, 75 };
-           // test comment
-
             int upper = 99, lower = 0;
             IList<IList<int>> missingRanges = FindMissingRanges(nums1, lower, upper);
             string result = ConvertIListToNestedList(missingRanges);
@@ -191,7 +189,36 @@ namespace ISM6225_Fall_2023_Assignment_2
             try
             {
                 // Write your code here and you can modify the return value according to the requirements
-                return s.Length == 0;
+                Dictionary<char, char> goodbracketcombos = new Dictionary<char, char> // creat dict to establish valid input
+                {
+                    {'(', ')' },
+                    {'[', ']' },
+                    {'{', '}' }
+                };
+
+                List<char> bracketopen = new List<char>(); // keeps track of open brackets to be closed
+
+                for (int i = 0; i < s.Length; i++)
+                {
+                    char c = s[i]; //take what is in this position of the string and save it to 'c'
+
+                    if (goodbracketcombos.ContainsKey(c))  // is there a dictionary key with 'c'?
+                    {
+                        bracketopen.Add(c); // if yes, add it to the open bracket tracker list
+                    }
+                    else if (goodbracketcombos.ContainsValue(c)) // check the dictionary value for the character in 'c'
+                    {
+                        if (bracketopen.Count == 0 || goodbracketcombos[bracketopen[bracketopen.Count - 1]] != c) 
+                                                                                                                                                                                                                                  
+                        {
+                            return false;
+                        }
+                        bracketopen.RemoveAt(bracketopen.Count - 1); // reset the bracket tracker
+                    }
+                }
+                return bracketopen.Count == 0; // checks if all open brackets have been closed, i.e. the count will be 0.  returns true if the count = 0
+
+                //return s.Length == 0;
             }
             catch (Exception)
             {
