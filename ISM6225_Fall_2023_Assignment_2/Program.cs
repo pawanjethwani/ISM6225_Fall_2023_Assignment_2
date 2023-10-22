@@ -253,7 +253,33 @@ namespace ISM6225_Fall_2023_Assignment_2
             try
             {
                 // Write your code here and you can modify the return value according to the requirements
-                return 1;
+                if (prices == null || prices.Length <= 1) // check for valid input
+                {
+                    return 0;
+                }
+
+                int maxprofit = 0;
+                int lowprice = prices[0];
+
+                for (int i = 1; i < prices.Length; i++) //start loop w/ i = 1 because we already set the lowprice value to [0]
+                {
+                    if (prices[i] < lowprice) //this loop - looking for the lowest stock price and assigning to lowprice
+                    {
+                        lowprice = prices[i];
+                    }
+                    else
+                    {
+                        int profittracker = prices[i] - lowprice; //math to monitor the profit
+                        if (profittracker > maxprofit) //tracking the maximum profit value
+                        {
+                            maxprofit = profittracker;
+                        }
+                    }
+                }
+
+                return maxprofit;
+
+                //return 1;
             }
             catch (Exception)
             {
