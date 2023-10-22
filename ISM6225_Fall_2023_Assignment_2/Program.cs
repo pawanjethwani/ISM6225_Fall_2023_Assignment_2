@@ -1,4 +1,4 @@
-﻿/* 
+/* 
  
 YOU ARE NOT ALLOWED TO MODIFY ANY FUNCTION DEFINATION's PROVIDED.
 WRITE YOUR CODE IN THE RESPECTIVE QUESTION FUNCTION BLOCK
@@ -17,6 +17,8 @@ namespace ISM6225_Fall_2023_Assignment_2
             //Question 1:
             Console.WriteLine("Question 1:");
             int[] nums1 = { 0, 1, 3, 50, 75 };
+           
+
             int upper = 99, lower = 0;
             IList<IList<int>> missingRanges = FindMissingRanges(nums1, lower, upper);
             string result = ConvertIListToNestedList(missingRanges);
@@ -113,7 +115,39 @@ namespace ISM6225_Fall_2023_Assignment_2
             try
             {
                 // Write your code here and you can modify the return value according to the requirements
-                return new List<IList<int>>();
+                List<int> missingrange = new List<int>(); //tracker for ranges
+                List<IList<int>> rangelist = new List<IList<int>>(); // will be the final output of ranges
+
+                // Handle lower edge case
+                if (lower < nums[0]) //if the lower limit is less than the first element of nums, proceed to find a missing range
+                {
+                    missingrange.Add(lower); //establishes lower limit of range
+                    missingrange.Add(nums[0] - 1); //finds upper limit of the range by subtracting 1 from the value in position [0].
+                    rangelist.Add(missingrange);
+                    lower = nums[0] + 1; // updates lower bound to be 1 more than int in position [0]to check again for a new lower bound when 'if' runs again
+                }
+
+                // go through nums and find missing ranges
+                for (int i = 1; i < nums.Length; i++)
+                {
+                    if (nums[i] - nums[i - 1] > 1)
+                    { // checking if numbers are non-consecutive
+                        missingrange = new List<int>(); //resets the missingrange list to get ready to take the new ranges
+                        missingrange.Add(nums[i - 1] + 1); //adds the number that is 1 more than previous element - lower range limit - to tracker
+                        missingrange.Add(nums[i] - 1); //takes 1 away from current element = upper range limit - adds to tracker
+                        rangelist.Add(missingrange);
+                    }
+                }
+
+                // Handle upper edge
+                if (upper > nums[nums.Length - 1]) //checks if the given upper limit is is greater than the last int in nums.
+                {                                  // if so, there is a range to find 
+                    missingrange = new List<int>(); //resets the missingrange tracker list to get ready to take the new ranges
+                    missingrange.Add(nums[nums.Length - 1] + 1); //get number that is one more than largest int in nums and adds to tracker
+                    missingrange.Add(upper);
+                    rangelist.Add(missingrange);
+                }
+                return rangelist;  // new List<IList<int>>();
             }
             catch (Exception)
             {
